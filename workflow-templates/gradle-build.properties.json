@@ -1,0 +1,11 @@
+{
+    "name": "Noxcrew Gradle build workflow",
+    "description": "Noxcrew Gradle build workflow",
+    "categories": [
+        "Java",
+        "Kotlin"
+    ],
+    "filePatterns": [
+        "gradlew$"
+    ]
+}
