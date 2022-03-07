@@ -7,4 +7,4 @@ on:
 
 jobs:
   build:
-    uses: ./workflows/gradle-build.yaml
+    uses: noxcrew/.github/workflows/gradle-build.yaml

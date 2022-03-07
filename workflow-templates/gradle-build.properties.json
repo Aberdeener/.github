@@ -1,6 +1,6 @@
 {
-    "name": "Noxcrew Gradle build workflow",
-    "description": "Noxcrew Gradle build workflow",
+    "name": "Gradle build workflow",
+    "description": "Builds a Gradle project",
     "categories": [
         "Java",
         "Kotlin"
