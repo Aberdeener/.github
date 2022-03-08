@@ -9,6 +9,7 @@ concurrency:
 env:
   GRADLE_OPTS: "-Dorg.gradle.daemon=false -Dorg.gradle.workers.max=8"
   CI_JOB_TOKEN: ${{ secrets.CI_JOB_TOKEN }}
+  CI: "true"
 
 jobs:
   gradle-build:
