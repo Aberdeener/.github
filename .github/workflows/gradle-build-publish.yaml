@@ -1,0 +1,38 @@
+name: Gradle build & publish
+
+on:
+  workflow_call:
+    secrets:
+      CI_DEPLOY_TOKEN:
+        required: true
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  GRADLE_OPTS: "-Dorg.gradle.daemon=false -Dorg.gradle.workers.max=8"
+  CI_DEPLOY_TOKEN: ${{ secrets.CI_DEPLOY_TOKEN }}
+
+jobs:
+  gradle-build:
+    name: Gradle build
+    runs-on: [self-hosted]
+    steps:
+      - name: "Checkout Git repository"
+        uses: actions/checkout@v3.0.0
+
+      - name: "Setup JDK"
+        uses: actions/setup-java@v3.0.0
+        with:
+          distribution: "temurin"
+          java-version: 17
+
+      - name: "Gradle build"
+        run: ./gradlew build publish
+
+      - name: "Upload Gradle artifacts"
+        uses: actions/upload-artifact@v3.0.0
+        with:
+          name: Gradle Build Artifacts
+          path: "**/build/libs/*.jar"
