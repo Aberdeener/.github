@@ -19,24 +19,23 @@ jobs:
     name: Gradle build
     runs-on: [self-hosted]
     steps:
-      - run: env
-      # - name: "Checkout Git repository"
-      #   uses: actions/checkout@v3.0.0
+      - name: "Checkout Git repository"
+        uses: actions/checkout@v3.0.0
 
-      # - name: "Validate Gradle wrapper"
-      #   uses: gradle/wrapper-validation-action@v1.0.4
+      - name: "Validate Gradle wrapper"
+        uses: gradle/wrapper-validation-action@v1.0.4
 
-      # - name: "Setup JDK"
-      #   uses: actions/setup-java@v3.0.0
-      #   with:
-      #     distribution: "temurin"
-      #     java-version: 17
+      - name: "Setup JDK"
+        uses: actions/setup-java@v3.0.0
+        with:
+          distribution: "temurin"
+          java-version: 17
 
-      # - name: "Gradle build"
-      #   run: ./gradlew build
+      - name: "Gradle build"
+        run: ./gradlew build
 
-      # - name: "Upload Gradle artifacts"
-      #   uses: actions/upload-artifact@v3.0.0
-      #   with:
-      #     name: Gradle Build Artifacts
-      #     path: "**/build/libs/*.jar"
+      - name: "Upload Gradle artifacts"
+        uses: actions/upload-artifact@v3.0.0
+        with:
+          name: Gradle Build Artifacts
+          path: "**/build/libs/*.jar"
