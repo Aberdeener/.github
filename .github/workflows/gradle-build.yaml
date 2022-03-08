@@ -11,7 +11,7 @@ concurrency:
   cancel-in-progress: true
 
 env:
-  GRADLE_OPTS: "-Dorg.gradle.daemon=false -Dorg.gradle.workers.max=8"
+  GRADLE_OPTS: "-Dorg.gradle.workers.max=8"
   CI_DEPLOY_TOKEN: ${{ secrets.CI_DEPLOY_TOKEN }}
 
 jobs:
@@ -28,8 +28,10 @@ jobs:
           distribution: "temurin"
           java-version: 17
 
-      - name: "Gradle build"
-        run: ./gradlew build
+      - name: "Setup Gradle & build project"
+        uses: gradle/gradle-build-action@v2
+        with:
+          arguments: build --stacktrace
 
       - name: "Upload Gradle artifacts"
         uses: actions/upload-artifact@v3.0.0
