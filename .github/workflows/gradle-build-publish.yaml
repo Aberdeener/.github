@@ -5,6 +5,11 @@ on:
     secrets:
       CI_DEPLOY_TOKEN:
         required: true
+    inputs:
+      CI_PROJECT_ID:
+        description: "Gitlab project ID to publish Maven artifact to"
+        required: true
+        type: number
 
 concurrency:
   group: ci-${{ github.ref }}
@@ -13,6 +18,7 @@ concurrency:
 env:
   GRADLE_OPTS: "-Dorg.gradle.daemon=false -Dorg.gradle.workers.max=8"
   CI_DEPLOY_TOKEN: ${{ secrets.CI_DEPLOY_TOKEN }}
+  CI_PROJECT_ID: ${{ inputs.CI_PROJECT_ID }}
 
 jobs:
   gradle-build:
