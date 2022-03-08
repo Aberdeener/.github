@@ -1,6 +1,10 @@
 name: Gradle build
 
-on: [workflow_call]
+on:
+  workflow_call:
+    secrets:
+      CI_JOB_TOKEN:
+        required: true
 
 concurrency:
   group: ci-${{ github.ref }}
